@@ -1,6 +1,8 @@
-import React, { FC, ReactNode } from 'react';
+import { FC, ReactNode } from 'react';
 import { CssBaseline, ThemeProvider as MuiThemeProvider } from '@mui/material';
-import theme from '@/theme';
+
+// Theme config.
+import { theme } from '@/config';
 
 interface Props {
   children: ReactNode;

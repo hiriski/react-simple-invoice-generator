@@ -1,14 +1,22 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
+
+// Router.
 import { BrowserRouter } from 'react-router-dom';
-import { ThemeProvider } from '@/providers';
-import RootRoutes from './root-routes';
+
+// Context providers.
+import { ThemeProvider, ReduxProvider } from '@/providers';
+
+// App route switch.
+import AppRoutes from '@/app-routes';
 
 const App: FC = () => {
   return (
     <ThemeProvider>
-      <BrowserRouter>
-        <RootRoutes />
-      </BrowserRouter>
+      <ReduxProvider>
+        <BrowserRouter>
+          <AppRoutes />
+        </BrowserRouter>
+      </ReduxProvider>
     </ThemeProvider>
   );
 };
