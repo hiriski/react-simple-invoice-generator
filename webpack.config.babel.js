@@ -66,6 +66,14 @@ const baseConfig = {
       '@': join(rootDir, '/src'),
     },
     extensions: ['.tsx', '.ts', '.js', '.jsx'],
+    fallback: {
+      process: require.resolve('process/browser'),
+      zlib: require.resolve('browserify-zlib'),
+      stream: require.resolve('stream-browserify'),
+      util: require.resolve('util'),
+      buffer: require.resolve('buffer'),
+      assert: require.resolve('assert'),
+    },
   },
 
   /**

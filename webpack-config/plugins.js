@@ -15,7 +15,10 @@ import { isDev, isDevServer, isProd, mode, rootDir } from './utils';
  * Automatic load modules instead of having to import them anywhere.
  * @see https://webpack.js.org/plugins/provide-plugin/
  */
-export const providePlugin = new ProvidePlugin({});
+export const providePlugin = new ProvidePlugin({
+  Buffer: ['buffer', 'Buffer'],
+  process: 'process/browser',
+});
 
 /**
  * The DefinePlugin replaces variables in code with other values at compile time.
