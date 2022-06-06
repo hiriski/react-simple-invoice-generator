@@ -1,7 +1,7 @@
 // React
 import { FC, Suspense } from 'react';
 
-// Hooks router..
+// Hooks router.
 import { useRoutes } from 'react-router-dom';
 
 // Routes object.

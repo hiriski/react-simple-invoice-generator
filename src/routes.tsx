@@ -1,8 +1,8 @@
-// Interfaces.
-import type { RouteObject } from 'react-router-dom';
-
 // Screens.
 import { HomeScreen, InvoiceGeneratorScreen } from '@/screens';
+
+// Interfaces.
+import type { RouteObject } from 'react-router-dom';
 
 // Routes object.
 const routes = (): Array<RouteObject> => [

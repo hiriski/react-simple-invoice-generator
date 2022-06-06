@@ -8,6 +8,7 @@ interface Props {
   sx?: SxProps;
 }
 
+// Page size.
 const ACTUALLY_PAPER_SIZE: Record<string, string> = {
   width: '210mm',
   height: '297mm',

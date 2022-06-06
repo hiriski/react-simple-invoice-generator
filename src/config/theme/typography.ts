@@ -39,12 +39,13 @@ const typography: TypographyOptions = {
   },
   body1: {
     fontSize: '0.875rem',
+    lineHeight: 1.45,
   },
   body2: {
     fontSize: '0.875rem',
   },
   subtitle1: {
-    fontSize: '0.75rem',
+    fontSize: '0.8rem',
   },
   subtitle2: {
     fontSize: '0.72rem',

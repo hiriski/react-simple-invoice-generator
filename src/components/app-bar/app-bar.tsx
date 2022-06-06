@@ -3,6 +3,7 @@ import { FC } from 'react';
 // Mui components.
 import { AppBar as MuiAppBar, Container } from '@mui/material';
 
+// Config.
 import { AppConfig } from '@/config';
 
 const AppBar: FC = () => {

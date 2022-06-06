@@ -1,9 +1,13 @@
 import { FC } from 'react';
 
 // Mui components.
-import { Paper } from '@mui/material';
+import { Paper, SxProps } from '@mui/material';
 
-const InvoiceSettings: FC = () => {
+interface Props {
+  sx?: SxProps;
+}
+
+const InvoiceSettings: FC<Props> = ({ sx }) => {
   return (
     <Paper
       sx={{
@@ -13,6 +17,7 @@ const InvoiceSettings: FC = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        ...sx,
       }}
     >
       Invoice Settings

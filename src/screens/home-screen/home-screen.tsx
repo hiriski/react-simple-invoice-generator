@@ -9,6 +9,7 @@ import { Box, Button, Typography } from '@mui/material';
 // Mui icons.
 import { ArrowForwardOutlined } from '@mui/icons-material';
 
+// Config.
 import { AppConfig } from '@/config';
 
 const HomeScreen: FC = () => (

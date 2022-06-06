@@ -5,7 +5,7 @@ import { blueGrey, common } from '@mui/material/colors';
 import { Palette } from '@mui/material/styles';
 
 // Custom theme palette.
-const palette: Partial<Palette> = {
+export const palette: Partial<Palette> = {
   background: {
     default: '#f7f7f7',
     paper: common.white,
