@@ -9,8 +9,17 @@ import { join } from 'path';
 import merge from 'webpack-merge';
 import TerserPlugin from 'terser-webpack-plugin';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
-import { isProd, rootDir, isDevServer } from './webpack-config/utils';
-import { htmlRule, fontsRule, imagesRule, javascriptRule, typescriptRule } from './webpack-config/rules';
+import { isProd, rootDir, isDevServer, PORT } from './webpack-config/utils';
+import {
+  cssRule,
+  fontsRule,
+  htmlRule,
+  imagesRule,
+  javascriptRule,
+  lessRules,
+  sassRules,
+  typescriptRule,
+} from './webpack-config/rules';
 import {
   definePlugin,
   providePlugin,
@@ -19,6 +28,8 @@ import {
   copyWebpackPlugin,
   eslintWebpackPlugin,
   forkTsCheckerWebpackPlugin,
+  miniCssExtractPlugin,
+  dotEnvPlugin,
 } from './webpack-config/plugins';
 
 /**
@@ -37,7 +48,7 @@ const baseConfig = {
     filename: isDevServer ? '[name].[fullhash].js' : '[name].[contenthash].js',
   },
   module: {
-    rules: [typescriptRule, javascriptRule, htmlRule, imagesRule, fontsRule],
+    rules: [typescriptRule, javascriptRule, htmlRule, imagesRule, fontsRule, cssRule, ...lessRules, ...sassRules],
   },
   plugins: [
     providePlugin,
@@ -47,12 +58,22 @@ const baseConfig = {
     cleanWebpackPlugin,
     htmlWebpackPlugin,
     copyWebpackPlugin,
+    miniCssExtractPlugin,
+    dotEnvPlugin,
   ],
   resolve: {
     alias: {
       '@': join(rootDir, '/src'),
     },
     extensions: ['.tsx', '.ts', '.js', '.jsx'],
+    fallback: {
+      process: require.resolve('process/browser'),
+      zlib: require.resolve('browserify-zlib'),
+      stream: require.resolve('stream-browserify'),
+      util: require.resolve('util'),
+      buffer: require.resolve('buffer'),
+      assert: require.resolve('assert'),
+    },
   },
 
   /**
@@ -67,7 +88,7 @@ const baseConfig = {
         commons: {
           test: /[\\/]node_modules[\\/]/,
           name: 'vendor',
-          chunks: 'initial',
+          chunks: 'all',
         },
       },
     },
@@ -92,6 +113,7 @@ const developmentConfig = {
     headers: { 'Access-Control-Allow-Origin': '*' },
     historyApiFallback: true,
     hot: true,
+    port: PORT,
     proxy: {},
     static: {
       publicPath: '/',

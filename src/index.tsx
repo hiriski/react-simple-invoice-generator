@@ -1,8 +1,25 @@
-import React from 'react';
-import { createRoot } from 'react-dom/client';
-import App from './App';
+import { StrictMode } from 'react';
 
-const rootElement = document.getElementById('root');
-const root = createRoot(rootElement as Element);
+// React DOM.
+import ReactDOM from 'react-dom';
 
-root.render(<App />);
+// Components.
+import App from '@/app';
+
+// fonts
+import '@/assets/fonts/Be_Vietnam_Pro/BeVietnamPro-Regular.ttf';
+import '@/assets/fonts/Be_Vietnam_Pro/BeVietnamPro-Italic.ttf';
+import '@/assets/fonts/Be_Vietnam_Pro/BeVietnamPro-Medium.ttf';
+import '@/assets/fonts/Be_Vietnam_Pro/BeVietnamPro-MediumItalic.ttf';
+import '@/assets/fonts/Be_Vietnam_Pro/BeVietnamPro-SemiBold.ttf';
+import '@/assets/fonts/Be_Vietnam_Pro/BeVietnamPro-SemiBoldItalic.ttf';
+
+// Global styles.
+import '@/styles/styles.scss';
+
+ReactDOM.render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+  document.getElementById('root'),
+);
