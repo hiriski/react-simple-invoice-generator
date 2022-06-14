@@ -4,7 +4,7 @@ import { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 
 // Components.
-import App from '@/app';
+import App from './app';
 
 // fonts
 import '@/assets/fonts/Be_Vietnam_Pro/BeVietnamPro-Regular.ttf';
