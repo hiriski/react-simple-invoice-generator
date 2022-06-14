@@ -16,4 +16,19 @@ export const theme = createTheme({
   shadows,
   shape,
   spacing: THEME_SPACING,
+  components: {
+    MuiFab: {
+      styleOverrides: {
+        root: {
+          boxShadow: shadows[1],
+          '&.Mui-focusVisible': {
+            boxShadow: shadows[3],
+          },
+          '&:active': {
+            boxShadow: shadows[5],
+          },
+        },
+      },
+    },
+  },
 });

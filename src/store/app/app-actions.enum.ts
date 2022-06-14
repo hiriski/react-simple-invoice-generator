@@ -1,3 +1,6 @@
 export enum AppActionTypes {
-  APP_SET_LOADING = 'APP_SET_LOADING',
+  app_SET_LOADING = 'app_SET_LOADING',
+  app_SET_DRAWER_PREVIEW = 'app_SET_DRAWER_PREVIEW',
+  app_SET_ALERT = 'app_SET_ALERT',
+  app_RESET_ALERT = 'app_RESET_ALERT',
 }

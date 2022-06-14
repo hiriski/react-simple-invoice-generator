@@ -3,4 +3,7 @@ export { default as Page } from './page';
 export { default as Document } from './document';
 export { default as Container } from './container';
 export { default as Typography } from './typography';
+export { default as BaseDialog } from './base-dialog';
 export { default as SectionTitle } from './section-title';
+export { default as EditableText } from './editable-text';
+export { default as StyledButton } from './styled-button';

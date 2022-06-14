@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 // Base components.
-import { Typography } from '@/components/base';
+import { SectionTitle, Typography, EditableText } from '@/components/base';
 
 // Hooks.
 import { useGenerator } from '@/hooks/useGenerator';
@@ -20,6 +20,7 @@ const InvoiceSender: FC<Props> = ({ from }) => {
   const { editable } = useGenerator();
   return (
     <>
+      <SectionTitle>From :</SectionTitle>
       <Typography variant="h6" style={{ fontWeight: 'bold', marginBottom: editable ? 1 : createSpacing(1) }}>
         {from.companyName}
       </Typography>

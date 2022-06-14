@@ -34,7 +34,7 @@ const InvoiceItemHeader: FC = () => {
         justifyContent: 'flex-start',
         backgroundColor: '#EEF6FE',
         padding: '6px 16px',
-        minHeight: editable ? '52px' : '38px',
+        minHeight: editable ? '48px' : '34px',
       }}
     >
       <>

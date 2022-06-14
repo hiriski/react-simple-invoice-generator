@@ -5,12 +5,12 @@ export interface IInvoiceRecipient extends IPerson, ICompany {}
 
 export interface IInvoiceSender extends IPerson, ICompany {}
 
-export interface InvoiceLineItem {
+export interface IInvoiceLineItem {
   description: string;
-  quantity: number;
-  rate: number;
-  tax?: number;
-  amount: number;
+  quantity: string;
+  rate: string;
+  tax?: string;
+  amount: string;
 }
 
 export interface IInvoice {
@@ -20,7 +20,7 @@ export interface IInvoice {
   invoiceNumber: string;
   date: string;
   due?: string;
-  items: Array<InvoiceLineItem>;
+  items: Array<IInvoiceLineItem>;
   taxRate?: number;
   terms?: string;
   notes?: string;

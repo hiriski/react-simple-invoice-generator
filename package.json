@@ -12,11 +12,14 @@
     "start": "cross-env WEBPACK_IS_DEV_SERVER=true NODE_ENV=development webpack serve --config webpack.config.babel.js"
   },
   "dependencies": {
+    "@atlaskit/spinner": "^15.1.12",
+    "@date-io/date-fns": "^2.14.0",
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
     "@faker-js/faker": "^7.1.0",
     "@mui/icons-material": "^5.6.1",
     "@mui/material": "^5.6.1",
+    "@mui/x-date-pickers": "^5.0.0-alpha.6",
     "@react-pdf/renderer": "^2.1.2",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^12.1.5",
@@ -24,6 +27,7 @@
     "assert": "^2.0.0",
     "browserify-zlib": "^0.2.0",
     "buffer": "^6.0.3",
+    "date-fns": "^2.28.0",
     "process": "^0.11.10",
     "react": "17.0.2",
     "react-dom": "17.0.2",

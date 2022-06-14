@@ -16,15 +16,16 @@ import { PdfStyle } from '@/interfaces/pdf-styles';
 interface Props {
   children?: ReactNode;
   style?: SxProps | PdfStyle;
+  fixed?: boolean;
 }
 
-const Box: FC<Props> = ({ style, children }) => {
+const Box: FC<Props> = ({ style, children, fixed }) => {
   const { editable, debug } = useGenerator();
 
   return editable ? (
     <MuiBox sx={style as SxProps}>{children}</MuiBox>
   ) : (
-    <PDFView debug={false} style={style as PdfStyle}>
+    <PDFView fixed={fixed} debug={false} style={style as PdfStyle}>
       {children}
     </PDFView>
   );

@@ -15,6 +15,7 @@ const InvoiceFooter: FC<Props> = ({ message }) => {
 
   return (
     <Box
+      fixed
       style={{
         textAlign: 'center',
         display: 'flex',

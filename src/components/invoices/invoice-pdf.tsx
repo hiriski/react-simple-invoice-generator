@@ -26,7 +26,7 @@ import InvoiceRecipient from '@/components/invoices/invoice-recipient';
 import { useGenerator } from '@/hooks/useGenerator';
 
 // Interfaces.
-import { IInvoice } from '@/interfaces/invoice';
+import { IInvoice, IInvoiceLineItem } from '@/interfaces/invoice';
 
 interface Props {
   invoice: IInvoice;
@@ -75,14 +75,12 @@ Font.register({
 /**
  * Main Invoice Component.
  */
-const Invoice: FC<Props> = ({ invoice }) => {
-  const { editable } = useGenerator();
-
+const InvoicePdf: FC<Props> = ({ invoice }) => {
   const subTotal = useMemo(() => {
     let subTotal = 0;
     invoice.items.forEach((i) => {
-      const quantityNumber = i.quantity;
-      const rateNumber = i.rate;
+      const quantityNumber = parseFloat(i.quantity);
+      const rateNumber = parseFloat(i.rate);
       const amount = quantityNumber && rateNumber ? quantityNumber * rateNumber : 0;
 
       subTotal += amount;
@@ -107,24 +105,24 @@ const Invoice: FC<Props> = ({ invoice }) => {
             </Box>
             <Box style={{ display: 'flex', flex: 1, flexDirection: 'column', marginLeft: '14px' }}>
               <InvoiceRecipient recipient={invoice.recipient} />
-              <InvoiceInfo invoice={invoice} />
+              <InvoiceInfo invoiceNumber={invoice.invoiceNumber} date={invoice.date} due={String(invoice.due)} />
             </Box>
           </Box>
           <Box style={{ marginBottom: '16px' }}>
             <InvoiceItemHeader />
-            {Array.isArray(invoice.items) && invoice.items.length > 0 ? (
-              // Render invoice items
-              invoice.items.map((item, index) => (
-                <InvoiceLineItem
-                  key={String(index)}
-                  index={index}
-                  item={item}
-                  lastItem={invoice.items.length - 1 === index}
-                />
-              ))
-            ) : (
-              <Typography>Add invoice item</Typography>
-            )}
+            {Array.isArray(invoice.items) && invoice.items.length > 0
+              ? // Render invoice items
+                invoice.items.map((item, index) => (
+                  <InvoiceLineItem
+                    dispatchAlert={() => null}
+                    onChange={() => null}
+                    key={String(index)}
+                    index={index}
+                    item={item}
+                    lastItem={invoice.items.length - 1 === index}
+                  />
+                ))
+              : null}
           </Box>
 
           {/*  Invoice Summary & Payment Info */}
@@ -149,4 +147,4 @@ const Invoice: FC<Props> = ({ invoice }) => {
     </Document>
   );
 };
-export default Invoice;
+export default InvoicePdf;

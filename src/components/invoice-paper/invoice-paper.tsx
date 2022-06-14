@@ -19,7 +19,7 @@ const InvoicePaper: FC<Props> = ({ children, sx }) => {
     <Paper
       sx={{
         width: { xs: '100%', md: ACTUALLY_PAPER_SIZE.width },
-        height: { xs: 'unset', md: ACTUALLY_PAPER_SIZE.height },
+        minHeight: { xs: 'unset', md: ACTUALLY_PAPER_SIZE.height },
         ...sx,
       }}
     >
