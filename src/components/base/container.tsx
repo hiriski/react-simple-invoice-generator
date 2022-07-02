@@ -17,7 +17,9 @@ const containerStyles = {
   display: 'flex',
   flexDirection: 'column',
   flex: 1,
-  padding: '32px',
+  padding: '40px',
+  borderRadius: 3,
+  overflow: 'hidden',
 };
 
 const Container: FC<Props> = ({ children }) => {

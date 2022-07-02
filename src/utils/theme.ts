@@ -23,27 +23,27 @@ export const createSpacing = (unit: number): string => unit * THEME_SPACING + 'p
 export const getTypographyFontSize = (variant?: TypographyVariant): number => {
   switch (variant) {
     case 'h1':
-      return 27;
+      return 26;
     case 'h2':
-      return 24;
-    case 'h3':
       return 22;
+    case 'h3':
+      return 20;
     case 'h4':
-      return 17;
+      return 16;
     case 'h5':
-      return 15;
+      return 14;
     case 'h6':
-      return 11.5;
+      return 10.75;
     case 'body1':
-      return 10.5;
-    case 'body2':
-      return 12;
-    case 'subtitle1':
       return 10;
+    case 'body2':
+      return 9.5;
+    case 'subtitle1':
+      return 9.5;
     case 'subtitle2':
-      return 9;
+      return 8.4;
     default:
-      return 10.5;
+      return 10;
   }
 };
 

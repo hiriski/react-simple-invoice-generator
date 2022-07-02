@@ -17,9 +17,14 @@ import '@/assets/fonts/Be_Vietnam_Pro/BeVietnamPro-SemiBoldItalic.ttf';
 // Global styles.
 import '@/styles/styles.scss';
 
+// React redux provider.
+import { ReduxProvider } from './providers';
+
 ReactDOM.render(
   <StrictMode>
-    <App />
+    <ReduxProvider>
+      <App />
+    </ReduxProvider>
   </StrictMode>,
   document.getElementById('root'),
 );

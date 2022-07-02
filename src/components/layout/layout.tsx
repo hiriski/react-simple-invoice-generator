@@ -9,6 +9,7 @@ import { AppBar } from '@/components//app-bar';
 
 // Background image
 import backgroundImage from '@/assets/images/background_header.jpg';
+import { Footer } from '@/components/footer';
 
 interface Props {
   children: ReactNode;
@@ -37,9 +38,11 @@ const Layout: FC<Props> = ({ children }) => {
           backgroundRepeat: 'no-repeat',
         }}
       />
-      <Box sx={{ position: 'relative', pt: '120px', pb: 10 }}>
-        <Container maxWidth="lg">{children}</Container>
+      <Box sx={{ position: 'relative', pt: '130px', pb: 10, zIndex: 2 }}>
+        <Container maxWidth={'lg'}>{children}</Container>
       </Box>
+
+      <Footer />
     </Box>
   );
 };

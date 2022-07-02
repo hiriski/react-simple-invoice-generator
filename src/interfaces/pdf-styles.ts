@@ -67,7 +67,7 @@ export interface PdfStyle {
   textDecoration?: 'line-through' | 'underline' | 'none' | 'line-through underline' | 'underline line-through';
   textDecorationColor?: string;
   textDecorationStyle?: 'dashed' | 'dotted' | 'solid' | string; // ?
-  textIndent?: any; // ?
+  textIndent?: string; // ?
   textOverflow?: 'ellipsis';
   textTransform?: 'capitalize' | 'lowercase' | 'uppercase';
 

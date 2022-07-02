@@ -18,7 +18,7 @@ declare global {
 const persistConfig = {
   key: 'root',
   storage: LocalStorage,
-  whitelist: [],
+  whitelist: ['app', 'settings', 'invoice'],
 };
 
 // Persist reducer.

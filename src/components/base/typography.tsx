@@ -21,12 +21,13 @@ interface Props extends Pick<MuiTypographyProps, 'children'> {
   style?: SxProps | PdfStyle;
   variant?: TypographyVariant;
   color?: keyof TypeText;
+  fixed?: boolean;
 }
 
 const Typography: FC<Props> = (props) => {
   const { editable, debug } = useGenerator();
 
-  const { variant, color, style, children } = props;
+  const { variant, color, style, children, fixed } = props;
 
   return editable ? (
     <MuiTypography sx={{ ...(style as SxProps) }} variant={variant}>
@@ -34,6 +35,7 @@ const Typography: FC<Props> = (props) => {
     </MuiTypography>
   ) : (
     <PDFText
+      fixed={fixed}
       debug={false}
       style={[
         { lineHeight: 1.5, fontSize: getTypographyFontSize(variant), color: getTypographyColor(color) },
