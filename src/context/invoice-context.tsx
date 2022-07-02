@@ -1,8 +1,8 @@
-import { createContext, Dispatch, FC, ReactNode, SetStateAction, useState } from 'react';
+import { createContext, Dispatch, SetStateAction } from 'react';
 import { IInvoice } from '@/interfaces/invoice';
 
 // Faker.
-import { faker } from '@faker-js/faker';
+// import { faker } from '@faker-js/faker';
 
 // Interfaces
 export interface IInvoiceContext {
@@ -10,82 +10,47 @@ export interface IInvoiceContext {
   setInvoice: Dispatch<SetStateAction<IInvoice>>;
 }
 
-interface ProviderProps {
-  children: ReactNode;
-}
-
 /** Initial state */
-export const initialInvoice: IInvoice = {
-  fileName: 'test-invoice-filename',
-  invoiceNumber: faker.random.numeric(4),
-  date: faker.date.soon().toLocaleDateString(),
-  due: faker.date.soon(7).toLocaleDateString(),
+export const initialInvoiceData: IInvoice = {
+  fileName: '',
+  invoiceNumber: '#INV123',
+  date: String(new Date()),
+  due: String(new Date()),
   sender: {
-    companyName: 'Your Company',
-    firstName: 'Riski',
+    companyName: '',
+    firstName: '',
     lastName: '',
-    country: 'Indonesia',
-    addressLine1: 'Jl. Parahyangan',
-    addressLine2: 'Kota Baru Parahyangan',
-    state: 'Jawa Barat',
-    city: 'Bandung Barat',
-    phone: '(021) xxxxxxxxx',
-    email: 'hi@riski.me',
+    country: '',
+    addressLine1: '',
+    addressLine2: '',
+    state: '',
+    city: '',
+    phone: '',
+    email: '',
   },
   recipient: {
-    companyName: faker.company.companyName() + ' ' + faker.company.companySuffix(),
-    firstName: faker.name.findName(),
-    addressLine1: faker.address.streetAddress(),
-    addressLine2: faker.address.street(),
-    city: faker.address.cityName(),
-    state: faker.address.state(),
-    country: faker.address.country(),
-    postalCode: faker.address.zipCode('####'),
-    phone: faker.phone.phoneNumber(),
-    email: undefined,
+    companyName: '',
+    firstName: '',
+    addressLine1: '',
+    addressLine2: '',
+    city: '',
+    state: '',
+    country: '',
+    postalCode: '',
+    phone: '',
+    email: '',
   },
-  items: [
-    {
-      description: 'Schematic Design',
-      quantity: '1',
-      rate: '500000',
-      amount: '500000',
-    },
-    {
-      description: 'Logo Design',
-      quantity: '1',
-      rate: '300000',
-      amount: '300000',
-    },
-    {
-      description: 'Website Company Profile (NextJs SPA)',
-      quantity: '1',
-      rate: '3000000',
-      amount: '3000000',
-    },
-    {
-      description: 'Database Administration',
-      quantity: '2',
-      rate: '500000',
-      amount: '1000000',
-    },
-    {
-      description: 'Back-End & Front-End Development',
-      quantity: '1',
-      rate: '2500000',
-      amount: '2500000',
-    },
-    {
-      description: 'CMS Development & Customization',
-      quantity: '1',
-      rate: '2000000',
-      amount: '2000000',
-    },
-  ],
+  items: [],
   taxRate: 10,
-  terms: faker.random.words(16),
+  terms:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   notes: '',
   footerMessages: 'Thank you for your business!',
+  paymentInfo: {
+    accountName: '',
+    accountNumber: '',
+    bankAccount: '',
+  },
 };
 
 /**

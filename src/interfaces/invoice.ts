@@ -10,11 +10,17 @@ export interface IInvoiceLineItem {
   quantity: string;
   rate: string;
   tax?: string;
-  amount: string;
+}
+
+export interface IInvoicePaymentInfo {
+  accountName?: string;
+  accountNumber?: string;
+  bankAccount?: string;
 }
 
 export interface IInvoice {
   fileName?: string;
+  logo?: string;
   sender: IInvoiceSender;
   recipient: IInvoiceRecipient;
   invoiceNumber: string;
@@ -25,4 +31,5 @@ export interface IInvoice {
   terms?: string;
   notes?: string;
   footerMessages?: string;
+  paymentInfo?: IInvoicePaymentInfo;
 }

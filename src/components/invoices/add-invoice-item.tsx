@@ -27,7 +27,6 @@ const AddInvoiceItem: FC = () => {
       description: '',
       quantity: '1',
       rate: '0',
-      amount: '0',
     });
   };
 

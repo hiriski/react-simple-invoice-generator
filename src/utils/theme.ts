@@ -33,7 +33,7 @@ export const getTypographyFontSize = (variant?: TypographyVariant): number => {
     case 'h5':
       return 14;
     case 'h6':
-      return 10.5;
+      return 10.75;
     case 'body1':
       return 10;
     case 'body2':

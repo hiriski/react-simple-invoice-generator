@@ -1,7 +1,7 @@
-import { Dispatch, FC, ReactNode } from 'react';
+import { FC, ReactNode } from 'react';
 
 // Mui components.
-import { Box, Grid } from '@mui/material';
+import { Box } from '@mui/material';
 
 // Layout
 import { Layout } from '@/components/layout';
@@ -16,17 +16,16 @@ import { InvoiceDownloadButton } from '@/components/invoice-download-button';
 import { generatorContext, IGeneratorContext } from '@/context/generator-context';
 
 // Interfaces.
-import { IInvoice, IInvoiceLineItem } from '@/interfaces/invoice';
+import { IInvoice } from '@/interfaces/invoice';
 
-import { PdfPreview } from '@/components/pdf-preview';
+// import { PdfPreview } from '@/components/pdf-preview';
 
-import TestButton from '@/components/test-button/test-button';
 import { useAppSelector } from '@/store';
 import { useDispatch } from 'react-redux';
-import { invoice_setInvoice, invoice_setInvoiceLineItem, ISetInvoice } from '@/store/invoice/invoice-actions';
+import { invoice_setInvoice, ISetInvoice } from '@/store/invoice/invoice-actions';
 
 // Hooks.
-import { useInvoice } from '@/hooks';
+// import { useInvoice } from '@/hooks';
 
 // Generator provider.
 const EditableProvider: FC<IGeneratorContext & { children: ReactNode }> = ({ children, editable, debug }) => (
@@ -34,8 +33,6 @@ const EditableProvider: FC<IGeneratorContext & { children: ReactNode }> = ({ chi
 );
 
 const InvoiceGeneratorScreen: FC = () => {
-  const { invoice_data: persistedInvoice } = useAppSelector((state) => state.invoice);
-
   /**
    * BUG
    * I can't use react redux hooks in child components that using component from @react-pdf/renderer 😆😆😆
@@ -46,19 +43,17 @@ const InvoiceGeneratorScreen: FC = () => {
 
   return (
     <Layout>
-      <Grid container spacing={3}>
+      <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
         <InvoicePaper>
           <EditableProvider editable={true} debug={false}>
             {<InvoiceEditable />}
           </EditableProvider>
         </InvoicePaper>
-        <Box sx={{ flex: 1, ml: 4 }}>
+        <Box sx={{ ml: 4, flex: 1, position: 'relative' }}>
           <InvoiceDownloadButton setInvoice={setInvoice} />
-          {/* <TestButton /> */}
-          {/* <InvoiceSettings /> */}
-          <PdfPreview onDrawer={false} invoice={persistedInvoice} />
+          <InvoiceSettings />
         </Box>
-      </Grid>
+      </Box>
     </Layout>
   );
 };

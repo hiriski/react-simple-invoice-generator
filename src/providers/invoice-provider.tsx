@@ -1,7 +1,7 @@
 import { FC, ReactNode, useState } from 'react';
 
 // Context
-import { invoiceContext, initialInvoice } from '@/context';
+import { invoiceContext, initialInvoiceData } from '@/context';
 
 // Interfaces.
 import { IInvoice } from '@/interfaces/invoice';
@@ -15,7 +15,7 @@ interface ProviderProps {
  * Invoice Context Provider.
  */
 const InvoiceProvider: FC<ProviderProps> = ({ children, value }) => {
-  const [invoice, setInvoice] = useState<IInvoice>(value || initialInvoice);
+  const [invoice, setInvoice] = useState<IInvoice>(value || initialInvoiceData);
   return <invoiceContext.Provider value={{ invoice, setInvoice }}>{children}</invoiceContext.Provider>;
 };
 

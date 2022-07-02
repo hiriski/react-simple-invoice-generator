@@ -1,13 +1,16 @@
 import { Dispatch, SetStateAction, useContext } from 'react';
-import { IInvoiceContext, invoiceContext, initialInvoice } from '@/context/invoice-context';
-import { IInvoice, IInvoiceLineItem } from '@/interfaces/invoice';
-import { calculateAmount } from '@/utils/invoice';
+import { IInvoiceContext, invoiceContext, initialInvoiceData } from '@/context/invoice-context';
+import { IInvoice, IInvoiceLineItem, IInvoiceRecipient, IInvoiceSender } from '@/interfaces/invoice';
 
 interface UseInvoiceHookReturn extends IInvoiceContext {
   reset: () => void;
   handleChangeLineItem: (index: number, property: keyof IInvoiceLineItem, value: string) => void;
   append: (newLineItem: IInvoiceLineItem) => void;
   remove: (index: number) => void;
+  updateRecipient: (recipient: IInvoiceRecipient) => void;
+  updateSender: (sender: IInvoiceSender) => void;
+  updateTaxRate: (taxRate: number) => void;
+  updateLogo: (logo?: string) => void;
 }
 
 /**
@@ -22,7 +25,7 @@ export const useInvoice = (): UseInvoiceHookReturn => {
    *
    * @return {void}
    */
-  const reset = (): void => setInvoice(initialInvoice);
+  const reset = (): void => setInvoice(initialInvoiceData);
 
   /**
    * Handle change invoice item.
@@ -34,18 +37,9 @@ export const useInvoice = (): UseInvoiceHookReturn => {
   const handleChangeLineItem = (index: number, property: keyof IInvoiceLineItem, value: string): void => {
     const { items } = invoice;
 
-    const getAmount = (): string => {
-      if (property === 'rate') {
-        return calculateAmount(items[index].quantity, value);
-      } else if (property === 'quantity') {
-        return calculateAmount(value, items[index].rate);
-      } else return items[index].amount;
-    };
-
     const selectedItem = {
       ...items[index],
       [property]: value,
-      amount: getAmount(),
     };
 
     const updateInvoiceItems = (
@@ -94,6 +88,42 @@ export const useInvoice = (): UseInvoiceHookReturn => {
     });
   };
 
+  /**
+   * Update invoice recipient.
+   *
+   * @param {IInvoiceRecipient} recipient
+   */
+  const updateRecipient = (recipient: IInvoiceRecipient): void => {
+    setInvoice({ ...invoice, recipient });
+  };
+
+  /**
+   * Update invoice sender.
+   *
+   * @param {IInvoiceSender} sender
+   */
+  const updateSender = (sender: IInvoiceSender): void => {
+    setInvoice({ ...invoice, sender });
+  };
+
+  /**
+   * Update tax rate.
+   *
+   * @param {number} taxRate
+   */
+  const updateTaxRate = (taxRate: number): void => {
+    setInvoice({ ...invoice, taxRate });
+  };
+
+  /**
+   * Update invoice logo.
+   *
+   * @param {string} logo
+   */
+  const updateLogo = (logo?: string): void => {
+    setInvoice({ ...invoice, logo });
+  };
+
   return {
     invoice,
     setInvoice,
@@ -101,5 +131,10 @@ export const useInvoice = (): UseInvoiceHookReturn => {
     handleChangeLineItem,
     append,
     remove,
+    updateRecipient,
+    updateTaxRate,
+    updateSender,
+
+    updateLogo,
   };
 };

@@ -7,3 +7,6 @@ export { default as BaseDialog } from './base-dialog';
 export { default as SectionTitle } from './section-title';
 export { default as EditableText } from './editable-text';
 export { default as StyledButton } from './styled-button';
+export { default as BaseConfirmDialog } from './base-confirm-dialog';
+export { default as EditableAreaMarker } from './editable-area-marker';
+export { default as EditableAreaWrapper } from './editable-area-wrapper';

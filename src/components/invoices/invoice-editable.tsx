@@ -1,20 +1,19 @@
-import { FC, useCallback, useMemo } from 'react';
-
-// React Pdf.
-import { Font } from '@react-pdf/renderer';
+import { FC, useMemo } from 'react';
 
 // Mui components.
-import { Box, Typography } from '@/components/base';
+import { Box } from '@/components/base';
 
 // Base components.
 import { Document, Page, Container } from '@/components/base';
 
 // Invoice components.
 import InvoiceInfo from './invoice-info';
+import DialogSender from './dialog-sender';
 import InvoiceFooter from './invoice-footer';
 import InvoiceSender from './invoice-sender';
 import InvoiceSummary from './invoice-summary';
 import AddInvoiceItem from './add-invoice-item';
+import DialogRecipient from './dialog-recipient';
 import InvoiceLineItem from './invoice-line-item';
 import InvoiceTitle from '../invoices/invoice-title';
 import InvoicePaymentInfo from './invoice-payment-info';
@@ -27,17 +26,16 @@ import InvoiceRecipient from '@/components/invoices/invoice-recipient';
 import { useGenerator } from '@/hooks/useGenerator';
 
 // Interfaces.
-import { IInvoice, IInvoiceLineItem } from '@/interfaces/invoice';
+import { IInvoiceLineItem, IInvoicePaymentInfo } from '@/interfaces/invoice';
 import { useInvoice } from '@/hooks';
 import { useDispatch } from 'react-redux';
 import { app_setAlert } from '@/store/app/app-actions';
+import { invoice_setDialogRecipient, invoice_setDialogSender } from '@/store/invoice/invoice-actions';
 
 const InvoiceEditable: FC = () => {
   const dispatch = useDispatch();
   const { editable } = useGenerator();
-  const { invoice, handleChangeLineItem } = useInvoice();
-
-  console.log('invoice', invoice);
+  const { invoice, handleChangeLineItem, updateLogo } = useInvoice();
 
   const subTotal = useMemo(() => {
     let subTotal = 0;
@@ -53,7 +51,8 @@ const InvoiceEditable: FC = () => {
   }, [invoice.items]);
 
   const saleTax = useMemo(() => {
-    return subTotal ? (subTotal * Number(invoice.taxRate)) / 100 : 0;
+    const taxRate = parseFloat(String(invoice.taxRate)) || 0;
+    return subTotal ? (subTotal * taxRate) / 100 : 0;
   }, [invoice.items, invoice.taxRate]);
 
   /**
@@ -69,18 +68,28 @@ const InvoiceEditable: FC = () => {
     );
   };
 
+  const onOpenDialogEditRecipient = (): void => {
+    dispatch(invoice_setDialogRecipient(true));
+  };
+
+  const onOpenDialogEditSender = (): void => {
+    dispatch(invoice_setDialogSender(true));
+  };
+
   return (
     <Document>
       <Page>
+        <DialogSender />
+        <DialogRecipient />
         <Container>
           <InvoiceTitle title="INVOICE" />
           <Box style={{ display: 'flex', flexDirection: 'row', marginBottom: '20px' }}>
-            <Box style={{ display: 'flex', flex: 1, flexDirection: 'column' }}>
-              <InvoiceCompanyLogo />
-              <InvoiceSender from={invoice.sender} />
+            <Box style={{ display: 'flex', flex: 1, flexDirection: 'column', marginRight: '20px' }}>
+              <InvoiceCompanyLogo logo={invoice.logo} onUploadImage={updateLogo} />
+              <InvoiceSender from={invoice.sender} handleOpenDialog={onOpenDialogEditSender} />
             </Box>
-            <Box style={{ display: 'flex', flex: 1, flexDirection: 'column', marginLeft: '14px' }}>
-              <InvoiceRecipient recipient={invoice.recipient} />
+            <Box style={{ display: 'flex', flex: 1, flexDirection: 'column', marginLeft: '20px' }}>
+              <InvoiceRecipient recipient={invoice.recipient} handleOpenDialog={onOpenDialogEditRecipient} />
               <InvoiceInfo invoiceNumber={invoice.invoiceNumber} date={invoice.date} due={String(invoice.due)} />
             </Box>
           </Box>
@@ -106,15 +115,15 @@ const InvoiceEditable: FC = () => {
           {/*  Invoice Summary & Payment Info */}
           <Box style={{ display: 'flex', flexDirection: 'row', marginBottom: '30px' }}>
             <Box style={{ display: 'flex', flex: 1, flexDirection: 'column' }}>
-              <InvoicePaymentInfo />
+              <InvoicePaymentInfo paymentInfo={invoice.paymentInfo as IInvoicePaymentInfo} />
             </Box>
             <Box style={{ display: 'flex', flex: 1, flexDirection: 'column' }}>
-              <InvoiceSummary subTotal={subTotal} taxRate={Number(invoice.taxRate)} saleTax={saleTax} />
+              <InvoiceSummary subTotal={subTotal} taxRate={invoice.taxRate} saleTax={saleTax} />
             </Box>
           </Box>
 
           {/* Invoice Term & Conditions */}
-          <Box style={{ display: 'flex', flexDirection: 'row', width: '50%', marginBottom: '20px' }}>
+          <Box style={{ display: 'flex', flexDirection: 'row', width: '70%', marginBottom: '20px' }}>
             <InvoiceTermAndConditions terms={String(invoice.terms)} />
           </Box>
         </Container>

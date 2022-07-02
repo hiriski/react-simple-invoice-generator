@@ -36,7 +36,7 @@ const StyledButtonRoot = styled('button', {
   cursor: 'pointer',
   minWidth: 40,
   lineHeight: 1.5,
-  borderRadius: Number(theme.shape.borderRadius),
+  borderRadius: 5,
 
   display: 'inline-flex',
   alignItems: 'center',
@@ -93,7 +93,7 @@ const StyledButtonRoot = styled('button', {
     }),
   ...(size === 'large' &&
     variant !== 'outlined' && {
-      padding: '12px 20px',
+      padding: '12px 26px',
       fontSize: 15,
     }),
 

@@ -34,7 +34,7 @@ const typography: TypographyOptions = {
     fontWeight: 700,
   },
   h6: {
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: 700,
   },
   body1: {
@@ -48,7 +48,7 @@ const typography: TypographyOptions = {
     fontSize: '0.8rem',
   },
   subtitle2: {
-    fontSize: '0.72rem',
+    fontSize: '0.7rem',
   },
 };
 

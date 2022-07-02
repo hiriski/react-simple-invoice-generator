@@ -17,9 +17,9 @@ export const palette: Partial<Palette> = {
     contrastText: '#fbfbfb',
   },
   secondary: {
-    light: '#FFE699',
-    main: '#FFA600',
-    dark: '#DB8600',
+    light: '#FFDE99',
+    main: '#FF8C00',
+    dark: '#DB6E00',
     contrastText: '#fbfbfb',
   },
   error: {

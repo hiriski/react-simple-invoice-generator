@@ -4,7 +4,8 @@ import { FC } from 'react';
 import { Text as PDFText } from '@react-pdf/renderer';
 
 // Mui components.
-import InputBase, { InputBaseProps } from '@mui/material/InputBase';
+import { InputBaseProps } from '@mui/material/InputBase';
+import OutlinedInput from '@mui/material/OutlinedInput';
 
 // Mui styles.
 import { styled } from '@mui/material/styles';
@@ -18,38 +19,31 @@ import { getTypographyColor, getTypographyFontSize } from '@/utils';
 // Interfaces.
 import { PdfStyle } from '@/interfaces/pdf-styles';
 import { SxProps, TypeText, TypographyVariant } from '@mui/material';
-import { TypographyProps as MuiTypographyProps } from '@mui/material/Typography';
 
 // Styled components.
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  position: 'relative',
-  padding: theme.spacing(0.4, 0.6),
-
-  '& input': {
-    boxSizing: 'border-box !important',
+const StyledInputBase = styled(OutlinedInput)(({ theme }) => ({
+  // position: 'relative',
+  padding: '0 !important',
+  '& .MuiInputBase-input.MuiInputBase-inputSizeSmall': {
+    padding: '2.4px 8px !important',
   },
-
-  '&.Mui-focused': {
-    backgroundColor: theme.palette.primary.light + ' !important',
+  '& .MuiInputBase-sizeSmall.MuiInputBase-multiline': {
+    padding: '2.4px 8px !important',
   },
-
+  '& .MuiOutlinedInput-notchedOutline': {
+    border: '1px solid transparent !important',
+  },
   '&:hover': {
-    backgroundColor: 'rgb(234 255 234)',
-    '&:before': {
-      // backgroundColor: theme.palette.primary.light,
+    backgroundColor: theme.palette.primary.light,
+    '& .MuiOutlinedInput-notchedOutline': {
+      border: '1px solid #bed1e4 !important',
     },
   },
-  '&:before': {
-    content: '""',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    height: '100%',
-    width: '100%',
-    transform: 'scaleX(1.05) scaleY(1.1)',
-    // backgroundColor: 'rgba(0, 0, 0, 0.015)',
-    // border: '1px solid rgba(0, 0, 0, 0.05)',
-    borderRadius: 2,
+  '&.Mui-focused': {
+    backgroundColor: theme.palette.primary.light,
+    '& .MuiOutlinedInput-notchedOutline': {
+      border: '1px solid #bed1e4 !important',
+    },
   },
 }));
 
@@ -65,7 +59,7 @@ const EditableText: FC<Props> = (props) => {
   const { variant, color, value, style, ...rest } = props;
 
   return editable ? (
-    <StyledInputBase value={String(value)} sx={{ width: '90%', ...style }} {...rest} />
+    <StyledInputBase size="small" value={String(value)} sx={{ width: '90%', ...style }} {...rest} />
   ) : (
     <PDFText
       debug={false}

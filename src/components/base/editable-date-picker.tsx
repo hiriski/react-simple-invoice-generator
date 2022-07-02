@@ -1,42 +1,55 @@
-import { FC, useMemo, useRef, useState } from 'react';
-import TextField, { TextFieldProps } from '@mui/material/TextField';
-import InputBase from '@mui/material/InputBase';
-import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+import { FC } from 'react';
+import TextField from '@mui/material/TextField';
+import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 
-type CustomTextFieldProps = TextFieldProps;
+interface Props {
+  label?: string;
+  name: 'date' | 'due';
+  value: string;
+  onChange: (property: 'date' | 'due', value: string) => void;
+}
 
-const CustomTextField: FC<CustomTextFieldProps> = (props) => {
-  const { onChange, value } = props;
-  return <InputBase onChange={onChange} value={value} />;
-};
-
-const EditableDatePicker: FC = () => {
-  const [value, setValue] = useState<Date | null>(new Date(new Date()));
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  const openPicker = useMemo(() => {
-    if (inputRef.current) {
-      return inputRef.current;
-    } else {
-      return inputRef.current;
-    }
-  }, [inputRef.current]);
-
-  const [open, setOpen] = useState<boolean>(false);
-
+const EditableDatePicker: FC<Props> = ({ label, name, value, onChange }) => {
   const handleChange = (newValue: Date | null): void => {
-    setValue(newValue);
+    onChange(name, String(newValue));
   };
 
-  console.log('openPicker', openPicker);
-
   return (
-    <DesktopDatePicker
-      label="Date desktop"
+    <MobileDatePicker
+      // label={label} // I don't need to display label
+      closeOnSelect
       inputFormat="MM/dd/yyyy"
       value={value}
       onChange={handleChange}
-      renderInput={(params) => <CustomTextField ref={inputRef} {...params} />}
+      renderInput={(params) => (
+        <TextField
+          size="small"
+          sx={{
+            '& .MuiInputBase-input.MuiInputBase-inputSizeSmall': {
+              padding: '2.4px 8px!important',
+            },
+            '& .MuiInputBase-sizeSmall.MuiInputBase-multiline': {
+              padding: '2.4px 8px!important',
+            },
+            '& .MuiOutlinedInput-notchedOutline': {
+              border: '1px solid transparent !important',
+            },
+            '&:hover': {
+              backgroundColor: (theme) => theme.palette.primary.light,
+              '& .MuiOutlinedInput-notchedOutline': {
+                border: '1px solid #bed1e4 !important',
+              },
+            },
+            '&.Mui-focused': {
+              backgroundColor: (theme) => theme.palette.primary.light,
+              '& .MuiOutlinedInput-notchedOutline': {
+                border: '1px solid #bed1e4 !important',
+              },
+            },
+          }}
+          {...params}
+        />
+      )}
     />
   );
 };

@@ -14,8 +14,17 @@ interface ISetIInvoiceLineItem {
   payload: IPayloadSetInvoiceLineItem;
 }
 
+interface ISetDialogEditRecipient {
+  type: typeof Types.invoice_SET_DIALOG_RECIPIENT;
+  payload: boolean;
+}
+interface ISetDialogSender {
+  type: typeof Types.invoice_SET_DIALOG_SENDER;
+  payload: boolean;
+}
+
 // Union actions type.
-export type InvoiceActions = ISetInvoice | ISetIInvoiceLineItem;
+export type InvoiceActions = ISetInvoice | ISetIInvoiceLineItem | ISetDialogEditRecipient | ISetDialogSender;
 
 // Actions creator.
 export const invoice_setInvoice = (payload: IInvoice): ISetInvoice => ({
@@ -25,5 +34,15 @@ export const invoice_setInvoice = (payload: IInvoice): ISetInvoice => ({
 
 export const invoice_setInvoiceLineItem = (payload: IPayloadSetInvoiceLineItem): ISetIInvoiceLineItem => ({
   type: Types.invoice_SET_INVOICE_LINE_ITEM,
+  payload,
+});
+
+export const invoice_setDialogRecipient = (payload: boolean): ISetDialogEditRecipient => ({
+  type: Types.invoice_SET_DIALOG_RECIPIENT,
+  payload,
+});
+
+export const invoice_setDialogSender = (payload: boolean): ISetDialogSender => ({
+  type: Types.invoice_SET_DIALOG_SENDER,
   payload,
 });

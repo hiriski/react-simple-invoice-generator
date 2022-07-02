@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, useCallback } from 'react';
+import { ChangeEvent, FC } from 'react';
 
 // Mui components.
 import Tooltip from '@mui/material/Tooltip';
@@ -15,11 +15,14 @@ import { Box, Typography, EditableText } from '@/components/base';
 import { useGenerator } from '@/hooks/useGenerator';
 
 // Utilities.
-import { formatRupiah } from '@/utils/currency';
+// import { formatRupiah } from '@/utils/currency';
 
 // Interfaces
 import { IInvoiceLineItem } from '@/interfaces/invoice';
 import { useInvoice } from '@/hooks';
+
+// Utils
+import { calculateAmount } from '@/utils/invoice';
 
 // Styles.
 const colStyles = {
@@ -77,16 +80,29 @@ const IInvoiceLineItem: FC<Props> = ({ item, index, lastItem, onChange, dispatch
       }}
     >
       <Box style={{ width: '55%', ...colStyles }}>
-        <EditableText name="description" value={String(item.description)} onChange={handleChange} />
+        <EditableText
+          name="description"
+          multiline
+          minRows={1}
+          maxRows={3}
+          value={item.description}
+          onChange={handleChange}
+        />
       </Box>
       <Box style={{ width: '10%', ...colStyles }}>
-        <EditableText style={{ ...textStyles }} name="quantity" value={String(item.quantity)} onChange={handleChange} />
+        <EditableText
+          style={{ ...textStyles }}
+          type="number"
+          name="quantity"
+          value={item.quantity}
+          onChange={handleChange}
+        />
       </Box>
       <Box style={{ width: '15%', ...colStyles }}>
-        <EditableText style={{ ...textStyles }} name="rate" value={String(item.rate)} onChange={handleChange} />
+        <EditableText style={{ ...textStyles }} type="number" name="rate" value={item.rate} onChange={handleChange} />
       </Box>
       <Box style={{ width: '20%', ...colStyles }}>
-        <Typography style={{ ...textStyles }}>{formatRupiah(Number(item.amount))}</Typography>
+        <Typography style={{ ...textStyles }}>{calculateAmount(item.quantity, item.rate)}</Typography>
       </Box>
 
       {editable && (

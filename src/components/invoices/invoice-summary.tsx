@@ -1,13 +1,14 @@
-import { FC } from 'react';
+import { ChangeEvent, FC, useMemo } from 'react';
 
 // Base components.
-import { Box, Typography } from '@/components/base';
+import { Box, EditableText, Typography } from '@/components/base';
 
 // Hooks.
 import { useGenerator } from '@/hooks/useGenerator';
 
 // Utilities.
-import { formatRupiah } from '@/utils/currency';
+// import { formatRupiah } from '@/utils/currency';
+import { useInvoice } from '@/hooks';
 
 // Styles.
 const rowStyles = {
@@ -31,6 +32,15 @@ interface Props {
 
 const InvoiceSummary: FC<Props> = ({ subTotal, taxRate, saleTax }) => {
   const { editable } = useGenerator();
+  const { updateTaxRate } = useInvoice();
+
+  const total = useMemo(() => {
+    return (typeof subTotal !== 'undefined' && typeof saleTax !== 'undefined' ? subTotal + saleTax : 0).toFixed(2);
+  }, [subTotal, saleTax]);
+
+  const onChangeTaxRate = (e: ChangeEvent<HTMLInputElement>): void => {
+    updateTaxRate(Number(e.target.value));
+  };
 
   return (
     <Box>
@@ -53,7 +63,7 @@ const InvoiceSummary: FC<Props> = ({ subTotal, taxRate, saleTax }) => {
           </Typography>
         </Box>
         <Box style={{ width: '38%', ...colStyles }}>
-          <Typography style={{ fontWeight: 600 }}>Rp {formatRupiah(subTotal)}</Typography>
+          <Typography style={{ fontWeight: 600 }}>{subTotal}</Typography>
         </Box>
       </Box>
 
@@ -80,12 +90,25 @@ const InvoiceSummary: FC<Props> = ({ subTotal, taxRate, saleTax }) => {
                 display: 'inline-block',
               }}
             >
-              {`(${taxRate}%)`}
+              {editable ? (
+                <>
+                  <EditableText
+                    type="number"
+                    sx={{ color: 'text.secondary', display: 'inline-flex', width: 60, ml: 1 }}
+                    name="quantity"
+                    value={taxRate}
+                    onChange={onChangeTaxRate}
+                  />
+                  %
+                </>
+              ) : (
+                `(${taxRate}%)`
+              )}
             </Typography>
           </Box>
         </Box>
         <Box style={{ width: '38%', ...colStyles }}>
-          <Typography style={{ fontWeight: 600 }}>Rp {formatRupiah(Number(saleTax))}</Typography>
+          <Typography style={{ fontWeight: 600 }}>{Number(saleTax)}</Typography>
         </Box>
       </Box>
 
@@ -109,10 +132,7 @@ const InvoiceSummary: FC<Props> = ({ subTotal, taxRate, saleTax }) => {
           </Typography>
         </Box>
         <Box style={{ width: '38%', ...colStyles }}>
-          <Typography style={{ fontWeight: 600 }}>
-            Rp{' '}
-            {typeof subTotal !== 'undefined' && typeof taxRate !== 'undefined' ? formatRupiah(subTotal + taxRate) : 0}
-          </Typography>
+          <Typography style={{ fontWeight: 600 }}>{total}</Typography>
         </Box>
       </Box>
     </Box>

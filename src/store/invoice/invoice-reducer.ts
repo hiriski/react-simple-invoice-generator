@@ -2,37 +2,26 @@
 import { InvoiceActionTypes as Types } from './invoice-actions.enum';
 
 // Initial invoice data.
-import { initialInvoice } from '@/context';
+import { initialInvoiceData } from '@/context';
 
 // Union actions type.
 import { InvoiceActions } from './invoice-actions';
-import { IInvoice, IInvoiceLineItem } from '@/interfaces/invoice';
+import { IInvoice } from '@/interfaces/invoice';
 
 // Invoice state definition.
 export interface IInvoiceState {
   invoice_isLoadingPreview: boolean;
   invoice_data: IInvoice;
+  invoice_openDialogRecipient: boolean;
+  invoice_openDialogSender: boolean;
 }
 
 // Init state.
 const initialState: IInvoiceState = {
   invoice_isLoadingPreview: false,
-  invoice_data: initialInvoice,
-};
-
-const updateInvoiceItems = (
-  items: Array<IInvoiceLineItem>,
-  index: number,
-  updatedInv: IInvoiceLineItem,
-): Array<IInvoiceLineItem> => {
-  return [
-    ...items.slice(0, index), // everything before current phrase
-    {
-      ...items[index],
-      ...updatedInv,
-    },
-    ...items.slice(index + 1), // everything after current phrase
-  ];
+  invoice_data: initialInvoiceData,
+  invoice_openDialogRecipient: false,
+  invoice_openDialogSender: false,
 };
 
 // Invoice state reducer.
@@ -42,6 +31,16 @@ const invoiceReducer = (state: IInvoiceState = initialState, { type, payload }: 
       return {
         ...state,
         invoice_data: payload,
+      };
+    case Types.invoice_SET_DIALOG_RECIPIENT:
+      return {
+        ...state,
+        invoice_openDialogRecipient: payload,
+      };
+    case Types.invoice_SET_DIALOG_SENDER:
+      return {
+        ...state,
+        invoice_openDialogSender: payload,
       };
     default:
       return state;

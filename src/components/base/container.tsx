@@ -18,6 +18,8 @@ const containerStyles = {
   flexDirection: 'column',
   flex: 1,
   padding: '40px',
+  borderRadius: 3,
+  overflow: 'hidden',
 };
 
 const Container: FC<Props> = ({ children }) => {
