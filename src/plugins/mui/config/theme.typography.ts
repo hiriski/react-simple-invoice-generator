@@ -1,12 +1,10 @@
-// Interfaces.
+// import { AppStyleLibs } from '@/features/app/libs'
 import { TypographyOptions } from '@mui/material/styles/createTypography';
 
-// Default font family
 export const fontFamily = [
-  'Be Vietnam Pro, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-].join(', ');
+  `"Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif`,
+].join(',');
 
-// Custom theme typography.
 const typography: TypographyOptions = {
   fontFamily,
   fontWeightLight: 300,
@@ -52,4 +50,4 @@ const typography: TypographyOptions = {
   },
 };
 
-export default typography;
+export { typography };

@@ -36,36 +36,46 @@ interface Props {
  * Register fonts.
  */
 const baseUrlFont = IS_PROD
-  ? 'https://invoice.riski.me/assets/fonts/Be_Vietnam_Pro'
-  : 'http://local-cdn.test/fonts/Be_Vietnam_Pro';
+  ? 'https://react-simple-invoice-generator.vercel.app/assets/fonts/Plus_Jakarta_Sans'
+  : 'http://127.0.0.1:5500/src/assets/fonts/Plus_Jakarta_Sans';
 
 Font.register({
-  family: 'Be Vietnam Pro',
+  family: 'Plus Jakarta Sans',
   fonts: [
     {
-      src: baseUrlFont + '/BeVietnamPro-Regular.ttf',
+      src: baseUrlFont + '/PlusJakartaSans-Light.ttf',
+      fontStyle: 'normal',
+      fontWeight: 300,
+    },
+    {
+      src: baseUrlFont + '/PlusJakartaSans-LightItalic.ttf',
+      fontStyle: 'italic',
+      fontWeight: 300,
+    },
+    {
+      src: baseUrlFont + '/PlusJakartaSans-Regular.ttf',
     }, // font-style: normal, font-weight: normal
     {
-      src: baseUrlFont + '/BeVietnamPro-Italic.ttf',
+      src: baseUrlFont + '/PlusJakartaSans-Italic.ttf',
       fontStyle: 'italic',
     },
     {
-      src: baseUrlFont + '/BeVietnamPro-Medium.ttf',
+      src: baseUrlFont + '/PlusJakartaSans-Medium.ttf',
       fontStyle: 'normal',
       fontWeight: 500,
     },
     {
-      src: baseUrlFont + '/BeVietnamPro-MediumItalic.ttf',
+      src: baseUrlFont + '/PlusJakartaSans-MediumItalic.ttf',
       fontStyle: 'italic',
       fontWeight: 500,
     },
     {
-      src: baseUrlFont + '/BeVietnamPro-SemiBold.ttf',
+      src: baseUrlFont + '/PlusJakartaSans-SemiBold.ttf',
       fontStyle: 'normal',
       fontWeight: 700,
     },
     {
-      src: baseUrlFont + '/BeVietnamPro-SemiBoldItalic.ttf',
+      src: baseUrlFont + '/PlusJakartaSans-SemiBoldItalic.ttf',
       fontStyle: 'italic',
       fontWeight: 700,
     },
