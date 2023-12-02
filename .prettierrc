@@ -9,19 +9,19 @@
   "endOfLine": "auto",
   "printWidth": 120,
   "overrides": [
-      {
-          "files": ["*.ts"],
-          "options": {
-              "parser": "typescript"
-          }
-      },
-      {
-          "files": ["*.tsx"],
-          "options": {
-              "parser": "typescript",
-              "jsxBracketSameLine": false,
-              "jsxSingleQuote": false
-          }
+    {
+      "files": ["*.ts"],
+      "options": {
+        "parser": "typescript"
       }
+    },
+    {
+      "files": ["*.tsx"],
+      "options": {
+        "parser": "typescript",
+        "jsxBracketSameLine": false,
+        "jsxSingleQuote": false
+      }
+    }
   ]
 }

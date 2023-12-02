@@ -1,5 +1,5 @@
 // Screens.
-import { HomeScreen, InvoiceGeneratorScreen } from '@/screens';
+import { InvoiceGeneratorScreen } from '@/screens';
 
 // Interfaces.
 import type { RouteObject } from 'react-router-dom';
@@ -8,10 +8,6 @@ import type { RouteObject } from 'react-router-dom';
 const routes = (): Array<RouteObject> => [
   {
     path: '/',
-    element: <HomeScreen />,
-  },
-  {
-    path: '/generator',
     element: <InvoiceGeneratorScreen />,
   },
 ];
