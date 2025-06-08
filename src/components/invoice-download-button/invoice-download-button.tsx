@@ -106,12 +106,8 @@ const InvoiceDownloadButton: FC<Props> = ({ setInvoice }) => {
     <generatorContext.Provider value={{ editable: false, debug: true }}>
       <Box
         sx={{
-          position: 'absolute',
-          zIndex: 2,
           display: 'flex',
           alignItems: 'center',
-          top: -BUTTON_SIZE / 2,
-          left: BUTTON_SIZE / 2,
         }}
       >
         {!pdfInstance.error ? (

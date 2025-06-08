@@ -21,27 +21,12 @@ const Layout: FC<Props> = ({ children }) => {
   const isMatchMobileView = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
-    <Box>
-      {/* App bar */}
-      <AppBar />
-
-      {/* Background layout */}
-      <Box
-        sx={{
-          width: '100%',
-          position: 'fixed',
-          backgroundColor: 'primary.main',
-          height: isMatchMobileView ? 300 : 400,
-          backgroundImage: `url(${backgroundImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center bottom',
-          backgroundRepeat: 'no-repeat',
-        }}
-      />
-      <Box sx={{ position: 'relative', pt: '130px', pb: 10, zIndex: 2 }}>
-        <Container maxWidth={'lg'}>{children}</Container>
+    <Box sx={{ bgcolor: 'background.default', height: '100vh', overflow: 'hidden' }}>
+      <Box sx={{ position: 'relative', zIndex: 2 }}>
+        <Container maxWidth={false} disableGutters>
+          {children}
+        </Container>
       </Box>
-
       <Footer />
     </Box>
   );

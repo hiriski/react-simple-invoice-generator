@@ -4,7 +4,7 @@ import { grey, common } from '@mui/material/colors';
 export const paletteLight: PaletteOptions = {
   mode: 'light',
   background: {
-    default: '#f7f7f7',
+    default: '#ecf1fa',
     paper: common.white,
   },
   text: {

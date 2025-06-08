@@ -6,7 +6,7 @@ export const breakpoints: BreakpointsOptions = {
     xs: 0,
     sm: 620,
     md: 960,
-    lg: 1242,
-    xl: 1494,
+    lg: 1442,
+    xl: 1594,
   },
 };

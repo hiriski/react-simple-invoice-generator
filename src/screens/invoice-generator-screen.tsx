@@ -23,6 +23,8 @@ import { IInvoice } from '@/interfaces/invoice';
 import { useAppSelector } from '@/store';
 import { useDispatch } from 'react-redux';
 import { invoice_setInvoice, ISetInvoice } from '@/store/invoice/invoice-actions';
+import { Sidebar } from '@/components/sidebar';
+import { SIDEBAR_CONTAINER_WIDTH } from '@/constants';
 
 // Hooks.
 // import { useInvoice } from '@/hooks';
@@ -44,14 +46,29 @@ const InvoiceGeneratorScreen: FC = () => {
   return (
     <Layout>
       <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
-        <InvoicePaper>
-          <EditableProvider editable={true} debug={false}>
-            {<InvoiceEditable />}
-          </EditableProvider>
-        </InvoicePaper>
-        <Box sx={{ ml: 4, flex: 1, position: 'relative' }}>
-          <InvoiceDownloadButton setInvoice={setInvoice} />
-          <InvoiceSettings />
+        <Box sx={{ width: { xs: '100%', md: SIDEBAR_CONTAINER_WIDTH }, position: 'relative' }}>
+          <Sidebar />
+        </Box>
+        <Box
+          sx={{
+            overflow: 'scroll',
+            width: {
+              xs: '100',
+              md: `calc(100% - ${SIDEBAR_CONTAINER_WIDTH}px)`,
+            },
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <Box sx={{ height: '100vh', pt: 4 }}>
+            <InvoicePaper>
+              <EditableProvider editable={true} debug={false}>
+                {<InvoiceEditable />}
+              </EditableProvider>
+              <InvoiceDownloadButton setInvoice={setInvoice} />
+            </InvoicePaper>
+          </Box>
         </Box>
       </Box>
     </Layout>
