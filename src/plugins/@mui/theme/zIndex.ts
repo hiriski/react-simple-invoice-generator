@@ -1,6 +1,4 @@
-import { ZIndexOptions } from '@mui/material/styles/zIndex';
-
-export const zIndex: ZIndexOptions = {
+export const zIndex = {
   mobileStepper: 10,
   fab: 12,
   speedDial: 12,

@@ -1,6 +1,6 @@
-import { Shadows } from '@mui/material/styles/shadows';
+import { ThemeOptions } from '@mui/material';
 
-export const shadows: Shadows = [
+export const shadows: ThemeOptions['shadows'] = [
   'none',
   '0 5px 12px 0 rgb(0 0 0 / 1%)',
   '0 5px 16px 0 rgb(0 0 0 / 2%)',

@@ -8,7 +8,7 @@ import { InputBaseProps } from '@mui/material/InputBase';
 import OutlinedInput from '@mui/material/OutlinedInput';
 
 // Mui styles.
-import { styled } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 
 // Hooks.
 import { useGenerator } from '@/hooks/useGenerator';
@@ -58,13 +58,15 @@ const EditableText: FC<Props> = (props) => {
 
   const { variant, color, value, style, ...rest } = props;
 
+  const theme = useTheme();
+
   return editable ? (
     <StyledInputBase size="small" value={String(value)} sx={{ width: '90%', ...style }} {...rest} />
   ) : (
     <PDFText
       debug={false}
       style={[
-        { lineHeight: 1.5, fontSize: getTypographyFontSize(variant), color: getTypographyColor(color) },
+        { lineHeight: 1.5, fontSize: getTypographyFontSize(variant), color: getTypographyColor(theme, color) },
         { ...(style as PdfStyle) },
       ]}
     >

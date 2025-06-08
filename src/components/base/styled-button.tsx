@@ -1,4 +1,4 @@
-import { fontFamily } from '@/plugins/mui/config';
+import { fontFamily } from '@/plugins/@mui/theme';
 import Spinner from '@atlaskit/spinner';
 import { Theme } from '@mui/material';
 import Box from '@mui/material/Box';

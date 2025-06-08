@@ -14,7 +14,7 @@ import { getTypographyColor, getTypographyFontSize } from '@/utils';
 
 // Interfaces.
 import { PdfStyle } from '@/interfaces/pdf-styles';
-import { SxProps, TypeText, TypographyVariant } from '@mui/material';
+import { SxProps, TypeText, TypographyVariant, useTheme } from '@mui/material';
 import { TypographyProps as MuiTypographyProps } from '@mui/material/Typography';
 
 interface Props extends Pick<MuiTypographyProps, 'children'> {
@@ -29,6 +29,8 @@ const Typography: FC<Props> = (props) => {
 
   const { variant, color, style, children, fixed } = props;
 
+  const theme = useTheme();
+
   return editable ? (
     <MuiTypography sx={{ ...(style as SxProps) }} variant={variant}>
       {children}
@@ -38,7 +40,7 @@ const Typography: FC<Props> = (props) => {
       fixed={fixed}
       debug={false}
       style={[
-        { lineHeight: 1.5, fontSize: getTypographyFontSize(variant), color: getTypographyColor(color) },
+        { lineHeight: 1.5, fontSize: getTypographyFontSize(variant), color: getTypographyColor(theme, color) },
         { ...(style as PdfStyle) },
       ]}
     >

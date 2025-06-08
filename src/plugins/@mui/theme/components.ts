@@ -1,6 +1,6 @@
 import { Components } from '@mui/material/styles';
 
-const components: Components = {
+export const components: Components = {
   MuiTextField: {
     styleOverrides: {
       root: {
@@ -17,5 +17,3 @@ const components: Components = {
     },
   },
 };
-
-export { components };

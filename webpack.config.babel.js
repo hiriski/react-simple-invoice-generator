@@ -64,6 +64,7 @@ const baseConfig = {
   resolve: {
     alias: {
       '@': join(rootDir, '/src'),
+      'react/jsx-runtime': require.resolve('react/jsx-runtime'),
     },
     extensions: ['.tsx', '.ts', '.js', '.jsx'],
     fallback: {

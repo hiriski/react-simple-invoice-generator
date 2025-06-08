@@ -1,3 +1,3 @@
 export const shape = {
-  borderRadius: 3,
+  borderRadius: 6,
 };

@@ -1,23 +1,24 @@
 import { FC, ReactNode, useMemo } from 'react';
 
-// Mui
+// @mui
 import { createTheme, Theme, ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
-// Lodash
+// lodash
 import merge from 'lodash/merge';
 
-// Theme mui-config
+// @mui theme
 import {
+  breakpoints,
+  components,
   paletteBase,
   paletteDark,
   paletteLight,
-  typography,
-  components,
   shadows,
   shape,
+  typography,
   zIndex,
-} from '@/plugins/mui/config';
+} from '@/plugins/@mui/theme';
 
 interface MuiThemeProviderProps {
   children: ReactNode;
@@ -26,15 +27,15 @@ interface MuiThemeProviderProps {
 const MuiThemeProvider: FC<MuiThemeProviderProps> = ({ children }) => {
   const appTheme_paletteMode = 'light';
 
-  // Theme config.
   const theme = useMemo<Theme>(() => {
     const palette =
       appTheme_paletteMode === 'light' ? merge(paletteBase, paletteLight) : merge(paletteBase, paletteDark);
     return createTheme({
+      breakpoints,
+      components,
       palette,
       typography,
       shadows,
-      components,
       shape,
       zIndex,
     });

@@ -5,7 +5,7 @@ import { Box, Typography } from '@/components/base';
 
 // Hooks
 import { useGenerator } from '@/hooks/useGenerator';
-import { paletteBase } from '@/plugins/mui/config';
+import { useTheme } from '@mui/material';
 
 interface Props {
   message?: string;
@@ -13,6 +13,8 @@ interface Props {
 
 const InvoiceFooter: FC<Props> = ({ message }) => {
   const { editable } = useGenerator();
+
+  const { palette } = useTheme();
 
   return (
     <Box
@@ -23,11 +25,11 @@ const InvoiceFooter: FC<Props> = ({ message }) => {
         flexDirection: 'column',
         justifyContent: 'flex-end',
 
-        backgroundColor: String(paletteBase.primary?.main as string),
+        backgroundColor: String(palette.primary?.main as string),
         padding: '10px 0',
       }}
     >
-      <Typography variant="subtitle1" style={{ color: String(paletteBase.primary?.contrastText) }}>
+      <Typography variant="subtitle1" style={{ color: String(palette.primary?.contrastText) }}>
         {message}
       </Typography>
     </Box>

@@ -61,7 +61,7 @@ const DialogSender: FC = () => {
       paperStyles={{ width: 720 }}
     >
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={6}>
+        <Grid size={{ xs: 12, sm: 6 }}>
           <TextField
             fullWidth
             value={sender.companyName}
@@ -72,7 +72,7 @@ const DialogSender: FC = () => {
             label="Company Name"
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid size={{ xs: 12, sm: 6 }}>
           <TextField
             fullWidth
             value={sender.country}
@@ -83,7 +83,7 @@ const DialogSender: FC = () => {
             label="Country"
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid size={{ xs: 12, sm: 6 }}>
           <TextField
             fullWidth
             value={sender.phone}
@@ -94,7 +94,7 @@ const DialogSender: FC = () => {
             label="Phone"
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid size={{ xs: 12, sm: 6 }}>
           <TextField
             fullWidth
             value={sender.email}
@@ -105,7 +105,7 @@ const DialogSender: FC = () => {
             label="Email"
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid size={{ xs: 12, sm: 6 }}>
           <TextField
             multiline
             fullWidth
@@ -118,7 +118,7 @@ const DialogSender: FC = () => {
             label="Address Line 1"
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid size={{ xs: 12, sm: 6 }}>
           <TextField
             multiline
             fullWidth
@@ -131,7 +131,7 @@ const DialogSender: FC = () => {
             label="Address Line 2"
           />
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid size={{ xs: 12, sm: 4 }}>
           <TextField
             fullWidth
             value={sender.city}
@@ -142,7 +142,7 @@ const DialogSender: FC = () => {
             label="City"
           />
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid size={{ xs: 12, sm: 4 }}>
           <TextField
             fullWidth
             value={sender.state}
@@ -153,7 +153,7 @@ const DialogSender: FC = () => {
             label="State"
           />
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid size={{ xs: 12, sm: 4 }}>
           <TextField
             fullWidth
             value={sender.postalCode}

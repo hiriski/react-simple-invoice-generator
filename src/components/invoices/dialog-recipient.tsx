@@ -61,7 +61,7 @@ const DialogRecipient: FC = () => {
       paperStyles={{ width: 720 }}
     >
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={6}>
+        <Grid size={{ xs: 12, sm: 6 }}>
           <TextField
             fullWidth
             value={recipient.companyName}
@@ -72,7 +72,7 @@ const DialogRecipient: FC = () => {
             label="Company Name"
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid size={{ xs: 12, sm: 6 }}>
           <TextField
             fullWidth
             value={recipient.country}
@@ -83,7 +83,7 @@ const DialogRecipient: FC = () => {
             label="Country"
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid size={{ xs: 12, sm: 6 }}>
           <TextField
             fullWidth
             value={recipient.phone}
@@ -94,7 +94,7 @@ const DialogRecipient: FC = () => {
             label="Phone"
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid size={{ xs: 12, sm: 6 }}>
           <TextField
             fullWidth
             value={recipient.email}
@@ -105,7 +105,7 @@ const DialogRecipient: FC = () => {
             label="Email"
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid size={{ xs: 12, sm: 6 }}>
           <TextField
             multiline
             fullWidth
@@ -118,7 +118,7 @@ const DialogRecipient: FC = () => {
             label="Address Line 1"
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid size={{ xs: 12, sm: 6 }}>
           <TextField
             multiline
             fullWidth
@@ -131,7 +131,7 @@ const DialogRecipient: FC = () => {
             label="Address Line 2"
           />
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid size={{ xs: 12, sm: 4 }}>
           <TextField
             fullWidth
             value={recipient.city}
@@ -142,7 +142,7 @@ const DialogRecipient: FC = () => {
             label="City"
           />
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid size={{ xs: 12, sm: 4 }}>
           <TextField
             fullWidth
             value={recipient.state}
@@ -153,7 +153,7 @@ const DialogRecipient: FC = () => {
             label="State"
           />
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid size={{ xs: 12, sm: 4 }}>
           <TextField
             fullWidth
             value={recipient.postalCode}

@@ -1,7 +1,7 @@
-import { PaletteOptions } from '@mui/material'
-import { grey } from '@mui/material/colors'
+import { PaletteOptions } from '@mui/material';
+import { grey } from '@mui/material/colors';
 
-const paletteDark: PaletteOptions = {
+export const paletteDark: PaletteOptions = {
   mode: 'dark',
   background: {
     default: '#2b2c34',
@@ -12,6 +12,4 @@ const paletteDark: PaletteOptions = {
     secondary: grey[200],
     disabled: grey[300],
   },
-}
-
-export { paletteDark }
+};

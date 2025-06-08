@@ -1,9 +1,7 @@
 // Config palettes Mui theme.
 // import palette from '@/config/theme/palette';
 
-// Interfaces.
-import { paletteLight } from '@/plugins/mui/config';
-import { TypeText, TypographyVariant } from '@mui/material';
+import { Theme, TypeText, TypographyVariant } from '@mui/material';
 
 const THEME_SPACING = 4;
 
@@ -54,15 +52,15 @@ export const getTypographyFontSize = (variant?: TypographyVariant): number => {
  * @param {keyof TypeText} color
  * @return {string}
  */
-export const getTypographyColor = (color?: keyof TypeText): string => {
+export const getTypographyColor = (theme: Theme, color?: keyof TypeText): string => {
   switch (color) {
     case 'primary':
-      return String(paletteLight.text?.primary);
+      return String(theme.palette.text?.primary);
     case 'secondary':
-      return String(paletteLight.text?.secondary);
+      return String(theme.palette.text?.secondary);
     case 'disabled':
-      return String(paletteLight.text?.disabled);
+      return String(theme.palette.text?.disabled);
     default:
-      return String(paletteLight.text?.primary);
+      return String(theme.palette.text?.primary);
   }
 };

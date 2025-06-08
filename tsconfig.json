@@ -22,7 +22,6 @@
     "noImplicitThis": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
-    "importsNotUsedAsValues": "preserve",
     "incremental": true,
     "typeRoots": ["./node_modules/@types", "./src/@types"],
     "paths": {
