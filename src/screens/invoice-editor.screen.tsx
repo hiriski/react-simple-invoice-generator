@@ -24,7 +24,7 @@ import { useAppSelector } from '@/store';
 import { useDispatch } from 'react-redux';
 import { invoice_setInvoice, ISetInvoice } from '@/store/invoice/invoice-actions';
 import { Sidebar } from '@/components/sidebar';
-import { SIDEBAR_CONTAINER_WIDTH } from '@/constants';
+import { INVOICE_PAPER_HEIGHT, SIDEBAR_CONTAINER_WIDTH } from '@/constants';
 
 // Hooks.
 // import { useInvoice } from '@/hooks';
@@ -34,7 +34,7 @@ const EditableProvider: FC<IGeneratorContext & { children: ReactNode }> = ({ chi
   <generatorContext.Provider value={{ editable, debug }}>{children}</generatorContext.Provider>
 );
 
-const InvoiceGeneratorScreen: FC = () => {
+const InvoiceEditorScreen: FC = () => {
   /**
    * BUG
    * I can't use react redux hooks in child components that using component from @react-pdf/renderer 😆😆😆
@@ -46,22 +46,18 @@ const InvoiceGeneratorScreen: FC = () => {
   return (
     <Layout>
       <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
-        <Box sx={{ width: { xs: '100%', md: SIDEBAR_CONTAINER_WIDTH }, position: 'relative' }}>
-          <Sidebar />
-        </Box>
+        <Sidebar />
         <Box
           sx={{
-            overflow: 'scroll',
-            width: {
-              xs: '100',
-              md: `calc(100% - ${SIDEBAR_CONTAINER_WIDTH}px)`,
-            },
+            overflowY: 'scroll',
+            pl: `${SIDEBAR_CONTAINER_WIDTH}px`,
+            width: '100%',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
           }}
         >
-          <Box sx={{ height: '100vh', pt: 4 }}>
+          <Box sx={{ pt: { xs: 4, md: 8 }, mb: { xs: 6, md: 8 } }}>
             <InvoicePaper>
               <EditableProvider editable={true} debug={false}>
                 {<InvoiceEditable />}
@@ -75,4 +71,4 @@ const InvoiceGeneratorScreen: FC = () => {
   );
 };
 
-export default InvoiceGeneratorScreen;
+export default InvoiceEditorScreen;

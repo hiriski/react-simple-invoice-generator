@@ -1,1 +1,1 @@
-export { default as InvoiceGeneratorScreen } from './invoice-generator-screen';
+export { default as InvoiceEditorScreen } from './invoice-editor.screen';
